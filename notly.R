@@ -1,7 +1,7 @@
 library(ggplot2)
 library(plotly)
 
-ggplotly2 <- function(
+ggplotly <- function(
     p = ggplot2::last_plot(),
     width = NULL,
     height = NULL,
@@ -38,23 +38,3 @@ ggplotly2 <- function(
 notly <- function(notly_object){
   notly_object$ggplot
 }
-
-# Example
-#
-# data(iris)
-#
-# ggplot_object <-
-#   iris %>%
-#   ggplot(aes(x = Sepal.Length,
-#                 y = Sepal.Width,
-#                 color = Species))+
-#       geom_point()
-#
-# notly_obj <-
-# ggplot_object %>%
-#   ggplotly2
-#
-# ggplot_obj_again <-
-#   notly_obj %>%
-#   notly
-
