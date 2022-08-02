@@ -18,6 +18,7 @@ source('notly.R') # will be replaced with `library(notly)` when converted to a p
 
 data(iris)
 
+# Create a ggplot
 ggplot_object <-
   iris %>%
   ggplot(aes(x = Sepal.Length,
@@ -25,10 +26,12 @@ ggplot_object <-
                 color = Species))+
       geom_point()
 
+# Create a plotly object - but with the ggplot hiding inside of it as well
 notly_obj <-
 ggplot_object %>%
   ggplotly
 
+# Extract the ggplot again
 ggplot_obj_again <-
   notly_obj %>%
   notly
