@@ -1,7 +1,7 @@
 # `notly`
 Adds the ability to turn a ggplotly object plot back into a ggplot in [Plotly R](https://github.com/plotly/plotly.R)
 
-![Circle of Notly](img/notly.jpg)
+![Circle of Notly](man/figures/notly.jpg)
 
 Notly has the following functions:
 
