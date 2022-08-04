@@ -1,6 +1,8 @@
 # `notly`
 Adds the ability to turn a ggplotly object plot back into a ggplot in [Plotly R](https://github.com/plotly/plotly.R)
 
+![Circle of Notly](img/notly.jpg)
+
 Notly has the following functions:
 
 `notly::ggplotly()` which should override `plotly::ggplotly()` by adding the ggplot object to the output plotly object.
@@ -9,12 +11,17 @@ Notly has the following functions:
 
 This way if you've saved an interactive plotly object you can recover the ggplot from it for static output e.g. pdf!
 
+Installation:
+```r
+# install.packages("devtools")
+devtools::install_github("gdmcdonald/notly")
+```
 
 Example usage:
 ```r
 library(ggplot2)
 library(plotly)
-source('notly.R') # will be replaced with `library(notly)` when converted to a package
+library(notly)
 
 data(iris)
 
@@ -31,8 +38,12 @@ notly_obj <-
 ggplot_object %>%
   ggplotly
 
+notly_obj
+
 # Extract the ggplot again
 ggplot_obj_again <-
   notly_obj %>%
   notly
+  
+ggplot_obj_again
 ```
