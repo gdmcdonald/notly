@@ -1,5 +1,5 @@
 Package: notly
-Title: What the Package Does (One Line, Title Case)
+Title: Reversible ggplot to plotly conversion
 Version: 0.0.0.9000
 Authors@R: c(
     person("Gordon", "McDonald", ,"gordon.mcdonald@sydney.edu.au", role = c("aut", "cre")),
