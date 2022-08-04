@@ -2,7 +2,7 @@
 % Please edit documentation in R/notly.R
 \name{ggplotly}
 \alias{ggplotly}
-\title{Turn a ggplot into a plotly object}
+\title{Convert ggplot2 to notly (plotly with embedded ggplot)}
 \usage{
 ggplotly(
   p = ggplot2::last_plot(),
@@ -17,13 +17,89 @@ ggplotly(
 )
 }
 \arguments{
-\item{p}{ggplot object}
+\item{p}{a ggplot object.}
+
+\item{width}{Width of the plot in pixels (optional, defaults to automatic sizing).}
+
+\item{height}{Height of the plot in pixels (optional, defaults to automatic sizing).}
+
+\item{tooltip}{a character vector specifying which aesthetic mappings to show
+in the tooltip. The default, "all", means show all the aesthetic mappings
+(including the unofficial "text" aesthetic). The order of variables here will
+also control the order they appear. For example, use
+\code{tooltip = c("y", "x", "colour")} if you want y first, x second, and
+colour last.}
+
+\item{dynamicTicks}{should plotly.js dynamically generate axis tick labels?
+Dynamic ticks are useful for updating ticks in response to zoom/pan
+interactions; however, they can not always reproduce labels as they
+would appear in the static ggplot2 image.}
+
+\item{layerData}{data from which layer should be returned?}
+
+\item{originalData}{should the "original" or "scaled" data be returned?}
+
+\item{source}{a character string of length 1. Match the value of this string
+with the source argument in \code{\link[=event_data]{event_data()}} to retrieve the
+event data corresponding to a specific plot (shiny apps can have multiple plots).}
+
+\item{...}{arguments passed onto methods.}
 }
 \value{
 Plotly object with a ggplot nested inside
 }
 \description{
-This function takes a ggplot object and turns it into a plotly object.
-The original ggplot object is retained inside of the new plotly object.
+This function converts a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object to a
+notly object. The original ggplot object is retained inside of the new plotly object.
 This makes this conversion reversible, allowing you to freely go back and forth betweeen ggplot and plotly.
+}
+\details{
+Conversion of relative sizes depends on the size of the current
+graphics device (if no device is open, width/height of a new (off-screen)
+device defaults to 640/480). In other words, \code{height} and
+\code{width} must be specified at runtime to ensure sizing is correct.
+For examples on how to specify the output container's \code{height}/\code{width} in a
+shiny app, see \code{plotly_example("shiny", "ggplotly_sizing")}.
+}
+\examples{
+\dontrun{
+# simple example
+ggpenguins <- qplot(bill_length_mm , body_mass_g,
+data = palmerpenguins::penguins, color = species)
+ggplotly(ggpenguins)
+
+data(canada.cities, package = "maps")
+viz <- ggplot(canada.cities, aes(long, lat)) +
+  borders(regions = "canada") +
+  coord_equal() +
+  geom_point(aes(text = name, size = pop), colour = "red", alpha = 1/2)
+ggplotly(viz, tooltip = c("text", "size"))
+
+# linked scatterplot brushing
+d <- highlight_key(mtcars)
+qplot(data = d, x = mpg, y = wt) \%>\%
+  subplot(qplot(data = d, x = mpg, y = vs)) \%>\%
+  layout(title = "Click and drag to select points") \%>\%
+  highlight("plotly_selected")
+
+
+# more brushing (i.e. highlighting) examples
+demo("crosstalk-highlight-ggplotly", package = "plotly")
+
+# client-side linked brushing in a scatterplot matrix
+highlight_key(palmerpenguins::penguins) \%>\%
+  GGally::ggpairs(aes(colour = Species), columns = 1:4) \%>\%
+  ggplotly(tooltip = c("x", "y", "colour")) \%>\%
+  highlight("plotly_selected")
+}
+
+}
+\references{
+\url{https://plotly.com/ggplot2/}
+}
+\seealso{
+\code{\link[=plot_ly]{plot_ly()}}
+}
+\author{
+Carson Sievert
 }
