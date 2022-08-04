@@ -31,8 +31,12 @@ notly_obj <-
 ggplot_object %>%
   ggplotly
 
+notly_obj
+
 # Extract the ggplot again
 ggplot_obj_again <-
   notly_obj %>%
   notly
+  
+ggplot_obj_again
 ```
