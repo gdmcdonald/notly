@@ -14,7 +14,7 @@ Example usage:
 ```r
 library(ggplot2)
 library(plotly)
-source('notly.R') # will be replaced with `library(notly)` when converted to a package
+library(notly)
 
 data(iris)
 
