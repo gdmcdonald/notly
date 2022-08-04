@@ -1,5 +1,12 @@
-library(ggplot2)
-library(plotly)
+#' Turn a ggplot into a plotly object
+#'
+#' This function takes a ggplot object and turns it into a plotly object.
+#' The original ggplot object is retained inside of the new plotly object.
+#' This makes this conversion reversible, allowing you to freely go back and forth betweeen ggplot and plotly.
+#'
+#' @param p ggplot object
+#' @return Plotly object with a ggplot nested inside
+#' @export
 
 ggplotly <- function(
     p = ggplot2::last_plot(),
