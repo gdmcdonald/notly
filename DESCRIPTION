@@ -1,0 +1,18 @@
+Package: notly
+Title: Reversible ggplot to plotly conversion
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Gordon", "McDonald", ,"gordon.mcdonald@sydney.edu.au", role = c("aut", "cre")),
+    person("Henry", "Lydecker", ,"henry.lydecker@gmail.com", role = c("aut"))
+    )
+Description: Adds the ability to turn a ggplotly object plot back into a ggplot in Plotly R. Notly has the following functions: 
+    notly::ggplotly() which should override plotly::ggplotly() by adding the ggplot object to the output plotly object.
+    notly::notly() which is basically the inverse function to plotly::ggplotly(), i.e. it extracts the ggplot object back out of the plotly object.
+    This way if you've saved an interactive plotly object you can recover the ggplot from it for static output e.g. pdf!
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Imports:
+    plotly,
+    ggplot2
