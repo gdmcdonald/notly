@@ -42,6 +42,14 @@ ggplotly <- function(
   return(plotly_object)
 }
 
+#' Turn a notly back into a ggplot object
+#'
+#' This function takes a notly object (plotly with embedded ggplot) and turns it into a ggplot object.
+#' It is the inverse function to `ggplotly()`, allowing you to freely go back and forth betweeen ggplot and plotly.
+#'
+#' @param notly_object notly object
+#' @return ggplot object
+#' @export
 notly <- function(notly_object){
   notly_object$ggplot
 }
