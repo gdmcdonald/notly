@@ -9,6 +9,11 @@ Notly has the following functions:
 
 This way if you've saved an interactive plotly object you can recover the ggplot from it for static output e.g. pdf!
 
+Installation:
+```r
+# install.packages("devtools")
+devtools::install_github("gdmcdonald/notly")
+```
 
 Example usage:
 ```r
