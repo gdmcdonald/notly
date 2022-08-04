@@ -1,6 +1,8 @@
 # `notly`
 Adds the ability to turn a ggplotly object plot back into a ggplot in [Plotly R](https://github.com/plotly/plotly.R)
 
+![Circle of Notly](img/notly.jpg)
+
 Notly has the following functions:
 
 `notly::ggplotly()` which should override `plotly::ggplotly()` by adding the ggplot object to the output plotly object.
